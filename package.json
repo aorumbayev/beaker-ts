@@ -1,9 +1,8 @@
 {
   "name": "beaker-ts",
-  "version": "0.0.55",
+  "version": "0.0.61",
   "description": "",
   "main": "./lib/index.js",
-  "type":"module",
   "scripts": {
     "build": "npx tsc -p .",
     "beaker": "npx tsx src/beaker.ts",
