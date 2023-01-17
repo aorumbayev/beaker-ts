@@ -422,7 +422,7 @@ export class ApplicationClient {
     else return e;
   }
 
-  async resolve(
+  async _resolve(
     source: string,
     data: bigint | number | string | Uint8Array,
   ): Promise<MethodArg> {

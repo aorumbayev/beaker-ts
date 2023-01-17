@@ -297,7 +297,7 @@ function generateMethodImpl(
         factory.createAsExpression(
           factory.createAwaitExpression(
             factory.createCallExpression(
-              factory.createIdentifier('this.resolve'),
+              factory.createIdentifier('this._resolve'),
               undefined,
               [factory.createStringLiteral(defaultArg.source), data],
             ),
@@ -539,7 +539,7 @@ function generateComposeMethodImpl(
         factory.createToken(ts.SyntaxKind.QuestionToken),
         factory.createAwaitExpression(
           factory.createCallExpression(
-            factory.createIdentifier('this.resolve'),
+            factory.createIdentifier('this._resolve'),
             undefined,
             [factory.createStringLiteral(defaultArg.source), data],
           ),

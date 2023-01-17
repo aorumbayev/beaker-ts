@@ -15,7 +15,7 @@ export class ExpensiveApp extends bkr.ApplicationClient {
         iters: bigint;
         opup_app?: bigint;
     }, txnParams?: bkr.TransactionOverrides): Promise<bkr.ABIResult<Uint8Array>> {
-        const result = await this.execute(await this.compose.hash_it({ input: args.input, iters: args.iters, opup_app: args.opup_app === undefined ? await this.resolve("global-state", "ouaid") as bigint : args.opup_app }, txnParams));
+        const result = await this.execute(await this.compose.hash_it({ input: args.input, iters: args.iters, opup_app: args.opup_app === undefined ? await this._resolve("global-state", "ouaid") as bigint : args.opup_app }, txnParams));
         return new bkr.ABIResult<Uint8Array>(result, result.returnValue as Uint8Array);
     }
     async opup_bootstrap(args: {
@@ -30,7 +30,7 @@ export class ExpensiveApp extends bkr.ApplicationClient {
             iters: bigint;
             opup_app?: bigint;
         }, txnParams?: bkr.TransactionOverrides, atc?: algosdk.AtomicTransactionComposer): Promise<algosdk.AtomicTransactionComposer> => {
-            return this.addMethodCall(algosdk.getMethodByName(this.methods, "hash_it"), { input: args.input, iters: args.iters, opup_app: args.opup_app === undefined ? await this.resolve("global-state", "ouaid") : args.opup_app }, txnParams, atc);
+            return this.addMethodCall(algosdk.getMethodByName(this.methods, "hash_it"), { input: args.input, iters: args.iters, opup_app: args.opup_app === undefined ? await this._resolve("global-state", "ouaid") : args.opup_app }, txnParams, atc);
         },
         opup_bootstrap: async (args: {
             ptxn: algosdk.TransactionWithSigner | algosdk.Transaction;
