@@ -487,6 +487,25 @@ export class ApplicationClient {
     ) as ApplicationState;
   }
 
+  async getApplicationBoxNames(): Promise<Uint8Array[]> {
+    const boxResult = await this.client.getApplicationBoxes(this.appId).do();
+    return boxResult.boxes.map((b) => {
+      return b.name;
+    });
+  }
+
+  async getApplicationBox(boxName: string | Uint8Array): Promise<Uint8Array> {
+    if (typeof boxName === 'string') {
+      boxName = new Uint8Array(Buffer.from(boxName));
+    }
+
+    const boxResult = await this.client
+      .getApplicationBoxByName(this.appId, boxName)
+      .do();
+
+    return boxResult.value;
+  }
+
   async getAccountState(
     address?: string,
     raw?: boolean,
