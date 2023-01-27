@@ -173,7 +173,6 @@ function generateImports(beakerPath?: string): ts.ImportDeclaration[] {
     // Import algosdk
     factory.createImportDeclaration(
       undefined,
-      undefined,
       factory.createImportClause(
         false,
         factory.createIdentifier(ALGOSDK_IMPORTS),
@@ -185,7 +184,6 @@ function generateImports(beakerPath?: string): ts.ImportDeclaration[] {
 
     // Import generic client
     factory.createImportDeclaration(
-      undefined,
       undefined,
       factory.createImportClause(
         false,
@@ -200,7 +198,6 @@ function generateImports(beakerPath?: string): ts.ImportDeclaration[] {
 
 function generateClass(appSpec: AppSpec): ts.ClassDeclaration {
   return factory.createClassDeclaration(
-    undefined,
     [factory.createModifier(ts.SyntaxKind.ExportKeyword)],
     factory.createIdentifier(appSpec.contract.name),
     undefined,
@@ -225,7 +222,6 @@ function generateClass(appSpec: AppSpec): ts.ClassDeclaration {
 function generateComposeMethods(spec: AppSpec): ts.ClassElement {
   // create desc property
   return factory.createPropertyDeclaration(
-    undefined,
     undefined,
     factory.createIdentifier('compose'),
     undefined,
@@ -328,7 +324,6 @@ function generateMethodImpl(
       factory.createParameterDeclaration(
         undefined,
         undefined,
-        undefined,
         factory.createIdentifier('args'),
         undefined,
         factory.createTypeLiteralNode(argParams),
@@ -341,7 +336,6 @@ function generateMethodImpl(
   const txnParams = factory.createIdentifier('txnParams');
   params.push(
     factory.createParameterDeclaration(
-      undefined,
       undefined,
       undefined,
       txnParams,
@@ -451,7 +445,6 @@ function generateMethodImpl(
   );
 
   const methodSpec = factory.createMethodDeclaration(
-    undefined,
     [factory.createModifier(ts.SyntaxKind.AsyncKeyword)],
     undefined,
     method.name,
@@ -567,7 +560,6 @@ function generateComposeMethodImpl(
       factory.createParameterDeclaration(
         undefined,
         undefined,
-        undefined,
         factory.createIdentifier('args'),
         undefined,
         factory.createTypeLiteralNode(argParams),
@@ -580,7 +572,6 @@ function generateComposeMethodImpl(
     factory.createParameterDeclaration(
       undefined,
       undefined,
-      undefined,
       txnParams,
       factory.createToken(ts.SyntaxKind.QuestionToken),
       TRANSACTION_OVERRIDES_TYPE,
@@ -590,7 +581,6 @@ function generateComposeMethodImpl(
   const atcParam = factory.createIdentifier('atc');
   params.push(
     factory.createParameterDeclaration(
-      undefined,
       undefined,
       undefined,
       atcParam,
@@ -722,7 +712,6 @@ function generateStruct(s: Struct): ts.ClassDeclaration {
     members.push(
       factory.createPropertyDeclaration(
         undefined,
-        undefined,
         factory.createIdentifier(elem[0]),
         undefined,
         tsType,
@@ -733,7 +722,6 @@ function generateStruct(s: Struct): ts.ClassDeclaration {
 
   members.push(
     factory.createPropertyDeclaration(
-      undefined,
       [factory.createModifier(ts.SyntaxKind.StaticKeyword)],
       factory.createIdentifier('codec'),
       undefined,
@@ -759,7 +747,6 @@ function generateStruct(s: Struct): ts.ClassDeclaration {
   );
   members.push(
     factory.createPropertyDeclaration(
-      undefined,
       [factory.createModifier(ts.SyntaxKind.StaticKeyword)],
       factory.createIdentifier('fields'),
       undefined,
@@ -775,7 +762,6 @@ function generateStruct(s: Struct): ts.ClassDeclaration {
   members.push(
     // Add static `decodeResult(val: ABIValue): <T>` method
     factory.createMethodDeclaration(
-      undefined,
       [factory.createModifier(ts.SyntaxKind.StaticKeyword)],
       undefined,
       factory.createIdentifier('decodeResult'),
@@ -783,7 +769,6 @@ function generateStruct(s: Struct): ts.ClassDeclaration {
       undefined,
       [
         factory.createParameterDeclaration(
-          undefined,
           undefined,
           undefined,
           factory.createIdentifier('val'),
@@ -834,7 +819,6 @@ function generateStruct(s: Struct): ts.ClassDeclaration {
 
   members.push(
     factory.createMethodDeclaration(
-      undefined,
       [factory.createModifier(ts.SyntaxKind.StaticKeyword)],
       undefined,
       factory.createIdentifier('decodeBytes'),
@@ -842,7 +826,6 @@ function generateStruct(s: Struct): ts.ClassDeclaration {
       undefined,
       [
         factory.createParameterDeclaration(
-          undefined,
           undefined,
           undefined,
           factory.createIdentifier('val'),
@@ -893,7 +876,6 @@ function generateStruct(s: Struct): ts.ClassDeclaration {
   );
 
   return factory.createClassDeclaration(
-    undefined,
     [factory.createModifier(ts.SyntaxKind.ExportKeyword)],
     factory.createIdentifier(s.name),
     undefined,
@@ -911,7 +893,6 @@ function generateContractProperties(spec: AppSpec): ts.PropertyDeclaration[] {
   // create desc property
   const descrProp = factory.createPropertyDeclaration(
     undefined,
-    undefined,
     factory.createIdentifier('desc'),
     undefined,
     factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
@@ -922,7 +903,6 @@ function generateContractProperties(spec: AppSpec): ts.PropertyDeclaration[] {
   let approvalProp;
   if (source.approval !== undefined) {
     approvalProp = factory.createPropertyDeclaration(
-      undefined,
       [factory.createModifier(ts.SyntaxKind.OverrideKeyword)],
       factory.createIdentifier('approvalProgram'),
       undefined,
@@ -935,7 +915,6 @@ function generateContractProperties(spec: AppSpec): ts.PropertyDeclaration[] {
   let clearProp;
   if (source.clear !== undefined) {
     clearProp = factory.createPropertyDeclaration(
-      undefined,
       [factory.createModifier(ts.SyntaxKind.OverrideKeyword)],
       factory.createIdentifier('clearProgram'),
       undefined,
@@ -948,7 +927,6 @@ function generateContractProperties(spec: AppSpec): ts.PropertyDeclaration[] {
   let appSchemaProp;
   if (schema.global !== undefined) {
     appSchemaProp = factory.createPropertyDeclaration(
-      undefined,
       [factory.createModifier(ts.SyntaxKind.OverrideKeyword)],
       factory.createIdentifier('appSchema'),
       undefined,
@@ -961,7 +939,6 @@ function generateContractProperties(spec: AppSpec): ts.PropertyDeclaration[] {
   let acctSchemaProp;
   if (schema.local !== undefined) {
     acctSchemaProp = factory.createPropertyDeclaration(
-      undefined,
       [factory.createModifier(ts.SyntaxKind.OverrideKeyword)],
       factory.createIdentifier('acctSchema'),
       undefined,
@@ -1007,7 +984,6 @@ function generateContractProperties(spec: AppSpec): ts.PropertyDeclaration[] {
 
   // create methods property
   const methodProps = factory.createPropertyDeclaration(
-    undefined,
     [factory.createModifier(ts.SyntaxKind.OverrideKeyword)],
     factory.createIdentifier('methods'),
     undefined,
