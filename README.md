@@ -31,12 +31,12 @@ In a node project directory install beaker-ts
 npm install beaker-ts
 ```
 
-Generate the client using the `beaker generate` command
+Generate the client using the `beaker-ts generate` command
 
 ```sh
-$ npx beaker help generate
+$ npx beaker-ts help generate
 
-Usage: beaker generate [options] <path-to-spec> <path-to-write>
+Usage: beaker-ts generate [options] <path-to-spec> <path-to-write>
 
 Generates an application client given an application spec
 
@@ -47,7 +47,7 @@ Options:
 
 Example:
 ```sh
-npx beaker generate examples/hello/hello.json examples/hello/
+npx beaker-ts generate examples/hello/hello.json examples/hello/
 ```
 
 This should create a new file called `hellobeaker_client.ts`
