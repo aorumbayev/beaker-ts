@@ -77,8 +77,8 @@ import {HelloBeaker} from "./hellobeaker_client";
   });
 
   // Deploy our app on chain (Only works if the ApplicationSpec was used to generate the client)
-  const [appId, appAddr, txId] = await appClient.create();
-  console.log(`Created app ${appId} with address ${appAddr} in tx ${txId}`);
+  const {appId, appAddress, txId} = await appClient.create();
+  console.log(`Created app ${appId} with address ${appAddress} in tx ${txId}`);
 
   // Call the method by name, with named and typed arguments
   const result = await appClient.hello({name: "Beaker"});
